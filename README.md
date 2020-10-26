@@ -1,4 +1,5 @@
 # GameDevelopFundementals
-每一节课的作业对应一个Branch,
+作业截图在/Material and Texture/作业截图.png中。
 
-例如Week1的作业对应Week1的Branch,请老师查看。
+添加材质实现了Demo.png的效果。
+
