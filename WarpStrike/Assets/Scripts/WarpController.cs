@@ -68,7 +68,7 @@ public class WarpController : MonoBehaviour
         swordOrigRot = sword.localEulerAngles;
         swordOrigPos = sword.localPosition;
         swordMesh = sword.GetComponentInChildren<MeshRenderer>();
-        swordMesh.enabled = false;
+        swordMesh.enabled = true;
     }
 
     // Update is called once per frame
@@ -158,7 +158,7 @@ public class WarpController : MonoBehaviour
         ShowBody(false);
         anim.speed = 0;
 
-        transform.DOMove(target.position, warpDuration).SetEase(Ease.InExpo).OnComplete(()=>FinishWarp());
+        transform.DOMove(target.position + 1 * (target.position - this.transform.position), warpDuration).SetEase(Ease.InExpo).OnComplete(()=>FinishWarp());
 
         sword.parent = null;
         sword.DOMove(target.position, warpDuration/1.2f);
@@ -224,12 +224,13 @@ public class WarpController : MonoBehaviour
 
     IEnumerator HideSword()
     {
+        Debug.Log("called Hide Sword!");
         yield return new WaitForSeconds(.8f);
         swordParticle.Play();
-
+        Debug.Log("called Hide Sword after wait for seconds");
         GameObject swordClone = Instantiate(sword.gameObject, sword.position, sword.rotation);
 
-        swordMesh.enabled = false;
+        swordMesh.enabled = true;
 
         MeshRenderer swordMR = swordClone.GetComponentInChildren<MeshRenderer>();
         Material[] materials = swordMR.materials;
